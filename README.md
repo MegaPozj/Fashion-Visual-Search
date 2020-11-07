@@ -72,7 +72,9 @@ python3 ./references/generate_embeds.py
 ```
 
 ## Run It With
-
 ```sh
 python3 app-run.py
 ```
+
+## Video Demo
+[Video Demo](./demo.mov)
