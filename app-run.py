@@ -61,7 +61,7 @@ def init_models():
         global model_dt
         det_config = DetectionConfig()
         model_dt = MaskRCNN(mode="inference", config=det_config, model_dir="None")
-        model_dt.load_weights("detection/logs/mask_rcnn_deepfashion2_0005.h5", by_name=True)
+        model_dt.load_weights("checkpoint/detection/mask_rcnn_deepfashion2_0005.h5", by_name=True)
         model_dt.keras_model._make_predict_function()
 
     # Load models and database for retrieval

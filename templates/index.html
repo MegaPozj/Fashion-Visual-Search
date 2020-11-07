@@ -1,6 +1,5 @@
-{% extends 'base.html' %} 
-{% block head %}
-<title>GetGO Visual Search</title>
+{% extends 'base.html' %} {% block head %}
+<title>Fashion Visual Search</title>
 {{ dropzone.load_css() }} {{ dropzone.style('border: 4px dashed #DC143C; margin: 5%; min-height: 200px, max-width: 500px;') }}
 <link rel="stylesheet" href="static/style_index.css">
 <link rel="stylesheet" href="static/categories.css">
@@ -9,24 +8,22 @@
 <link href="https://fonts.googleapis.com/css?family=Lato:400,700|Lato:300" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Lato:300,700|Playfair+Display:700i" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" /> 
-<style> 
-    .search-results { 
-        display: grid; 
-        grid-template-columns: repeat(4, 10fr); 
-        grid-row-gap: 50px; 
-        grid-column-gap: 20px; 
-    }       
-</style> 
-{% endblock %} 
-
-{% block body %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<style>
+    .search-results {
+        display: grid;
+        grid-template-columns: repeat(4, 10fr);
+        grid-row-gap: 50px;
+        grid-column-gap: 20px;
+    }
+</style>
+{% endblock %} {% block body %}
 
 <center>
     <div style="width:400px !important;height:200 !important;">
-    <br>
-    <br>
-        <img src="static/images/logo/getgo_vis.png">
+        <br>
+        <br>
+        <img src="static/images/logo/vis.png">
     </div>
 </center>
 
@@ -41,11 +38,8 @@
     {{ dropzone.create(action='upload') }} {{ dropzone.load_js() }} {{ dropzone.config() }}
 </div>
 
-{% if results|length < 1 %}
-
-{% else %}
-
-<div>
+{% if results|length
+< 1 %} {% else %} <div>
     <h1 style="font-family: Lato">Query <span class="colored-word">Image</span></h1>
     <center>
         <hr class="products-hr">
@@ -53,54 +47,47 @@
     <br><br>
 
     <center>
-    <div style="width:400px !important;height:400 !important;">
-        <img src="static/images/uploads/{{ filename }}"> 
-    </div>
+        <div style="width:400px !important;height:400 !important;">
+            <img src="static/images/uploads/{{ filename }}">
+        </div>
     </center>
-<div>
+    <div>
 
-{% if len_dt_results == 0 %}
+        {% if len_dt_results == 0 %} {% else %}
 
-{% else %}
+        <div>
+            <h1 style="font-family: Lato">Detection <span class="colored-word">Result</span></h1>
+            <center>
+                <hr class="products-hr">
+            </center>
+            <br><br>
 
-<div>
-    <h1 style="font-family: Lato">Detection <span class="colored-word">Result</span></h1>
-    <center>
-        <hr class="products-hr">
-    </center>
-    <br><br>
+            <center>
+                <div style="width:400px !important;height:400 !important;">
+                    <img src="static/images/detection/det_{{ filename }}">
+                </div>
+            </center>
+            <div>
 
-    <center>
-    <div style="width:400px !important;height:400 !important;">
-        <img src="static/images/detection/det_{{ filename }}"> 
-    </div>
-    </center>
-<div>
+                {% endif %} {% for category, result in zip(categories, results) %}
+                <div>
 
-{% endif %}
+                    <h1 style="font-family: Lato">Search Result: <span class="colored-word">{{ category }}</span></h1>
+                    <center>
+                        <hr class="products-hr">
+                    </center>
+                    <br><br>
 
-{% for category, result in zip(categories, results) %}
-<div>
-    
-    <h1 style="font-family: Lato">Search Result: <span class="colored-word">{{ category }}</span></h1>
-    <center>
-        <hr class="products-hr">
-    </center>
-    <br><br>
-    
-    <div class="search-results">
-        {% for item in result %}
-            <img class="search-results" src="static/{{ item['fullpath'] }}">
-        {% endfor %} 
-    </div>
-    
-<div>
-{% endfor %}
+                    <div class="search-results">
+                        {% for item in result %}
+                        <img class="search-results" src="static/{{ item['fullpath'] }}"> {% endfor %}
+                    </div>
 
-{% endif %}
+                    <div>
+                        {% endfor %} {% endif %}
 
-<script src="static/nav.js "></script>
-<script src="static/products.js "></script>
-</body>
+                        <script src="static/nav.js "></script>
+                        <script src="static/products.js "></script>
+                        </body>
 
-{% endblock %}
+                        {% endblock %}

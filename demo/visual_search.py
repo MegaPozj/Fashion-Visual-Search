@@ -54,7 +54,7 @@ class DetectionConfig(Config):
 
 def parse_args():
     parser = argparse.ArgumentParser(
-        description='GetGO Fashion Clothes Retriever Demo')
+        description='Fashion Visual Search Demo')
     parser.add_argument(
         '--image_list', required=False,
         default="references/img_list/img_list.npy",
@@ -63,11 +63,6 @@ def parse_args():
         '--image_embeddings', required=False,
         default="references/img_embeds/embeddings.npy",
         help="Path to image embeddings")
-    parser.add_argument(
-        '--detection_weights', required=False,
-        metavar="/path/to/weights.h5",
-        default="detection/logs/mask_rcnn_deepfashion2_0005.h5",
-        help="Path to weights (.h5 file) of the detection model")
     parser.add_argument(
         '--topk', type=int, default=12, help='retrieve topk items')
     parser.add_argument(
@@ -81,12 +76,12 @@ def parse_args():
     parser.add_argument(
         '--checkpoint_retrieval',
         type=str,
-        default='checkpoint/customer_retrieve/epoch_100.pth',
+        default='checkpoint/retrieval/epoch_100.pth',
         help='the checkpoint file for clothes retrieval')
     parser.add_argument(
         '--checkpoint_landmark',
         type=str,
-        default='checkpoint/landmark/vgg/latest.pth',
+        default='checkpoint/landmark/latest.pth',
         help='the checkpoint file for landmark detection')
     parser.add_argument(
         '--visualize',
